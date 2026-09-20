@@ -2,7 +2,7 @@ import styles from './Button.module.css';
 
 interface PropTypes {
     type?: 'submit' | 'button' | 'reset';
-    className: string;
+    className?: string;
     onClick?: () => void;
     color?: 'sekunder' | 'primer';
     children?: string;
