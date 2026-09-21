@@ -1,13 +1,42 @@
 import styles from './ListOrder.module.css'
 import Button from '../../ui/Button'
+import { useEffect, useState } from 'react'
+import { getOrders, updateOrder } from '../../services/order.services';
+import type { IOrder } from '../../types/order';
+import { useNavigate } from 'react-router-dom';
+import { removeLocalStorage } from '../../utils/storage';
 const ListOrder = () => {
+    const [orders, setOrders] = useState([]); // Menampung data dari backend
+    const [refetchOrder, setRefetchOrder] = useState(true); // Update Data terbaru
+
+    useEffect(() => {
+        if(refetchOrder) {
+            const fetchData = async () => {
+                const result = await getOrders();
+                setOrders(result?.data || []);
+            };
+            fetchData();
+            setRefetchOrder(false);
+        }
+    }, [refetchOrder]);
+
+    const handleComplete = async (id: string) => {
+        await updateOrder(id, {status: 'COMPLETED'}).then(() => {
+            setRefetchOrder(true);
+        });
+    }
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        removeLocalStorage('auth');
+        return navigate('/login');
+    }
     return (
         <main className={styles.order}>
             <section className={styles.header}>
                 <h1 className={styles.title}>List Order</h1>
                 <div className={styles.button}>
                     <Button>Create Order</Button>
-                <Button color='sekunder'>Logout</Button>
+                    <Button color='sekunder' onClick={handleLogout}>Logout</Button>
                 </div>
                 
             </section>
@@ -29,17 +58,20 @@ const ListOrder = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Wili</td>
-                            <td>1</td>
-                            <td>10.000</td>
-                            <td>COMPLETED</td>
-                            <td className={styles.action}>
-                                <Button>Detail</Button>
-                                <Button>Completed</Button>
-                            </td>
-                        </tr>
+                        {orders.map((item: IOrder, index: number) => (
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>{item.customer_name}</td>
+                                <td>{item.table_number}</td>
+                                <td>{item.total}</td>
+                                <td>{item.status}</td>
+                                <td className={styles.action}>
+                                    <Button>Detail</Button>
+                                    {item.status === 'PROCESSING' && <Button onClick={() => handleComplete(item.id)}>Completed</Button>}
+                                </td>
+                            </tr>
+                        ))}
+                        
                     </tbody>
                 </table>
             </section>
