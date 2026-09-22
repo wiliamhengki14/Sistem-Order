@@ -21,8 +21,8 @@ export const getOrderId = async (id: string) => {
         headers: {
             Authorization: `Bearer ${getLocalStorage('auth')}`,
         },
-    }).then((data) => data);
-    return result
+    });
+    return result;
 }
 
 export const updateOrder = async (id: string, payload: {status: string}) => {

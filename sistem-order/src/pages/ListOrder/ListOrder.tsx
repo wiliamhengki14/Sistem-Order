@@ -5,6 +5,7 @@ import { getOrders, updateOrder } from '../../services/order.services';
 import type { IOrder } from '../../types/order';
 import { useNavigate } from 'react-router-dom';
 import { removeLocalStorage } from '../../utils/storage';
+import { Link } from 'react-router-dom';
 const ListOrder = () => {
     const [orders, setOrders] = useState([]); // Menampung data dari backend
     const [refetchOrder, setRefetchOrder] = useState(true); // Update Data terbaru
@@ -66,7 +67,9 @@ const ListOrder = () => {
                                 <td>{item.total}</td>
                                 <td>{item.status}</td>
                                 <td className={styles.action}>
-                                    <Button>Detail</Button>
+                                    <Link to={`${item.id}`}>
+                                        <Button>Detail</Button>
+                                    </Link>
                                     {item.status === 'PROCESSING' && <Button onClick={() => handleComplete(item.id)}>Completed</Button>}
                                 </td>
                             </tr>
