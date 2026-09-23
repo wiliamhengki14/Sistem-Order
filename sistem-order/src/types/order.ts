@@ -1,11 +1,11 @@
 interface IMenu {
-    id: string;
+    id?: string;
     name: string;
-    description: string;
-    price: number;
-    image_url: string;
-    category: string;
-    is_avaliable: boolean;
+    description?: string;
+    price?: number;
+    image_url?: string;
+    category?: string;
+    is_avaliable?: boolean;
 }
 
 interface ICart {
