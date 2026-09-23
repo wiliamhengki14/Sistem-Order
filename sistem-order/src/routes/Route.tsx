@@ -4,6 +4,7 @@ import Login from "../pages/Login/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import ListOrder from "../pages/ListOrder";
 import DetailOrder from "../pages/DetailOrder";
+import CreateOrder from "../pages/CreateOrder";
 const routes: RouteObject[] = [
     {
         path: '/',
@@ -20,6 +21,10 @@ const routes: RouteObject[] = [
     {
         path: '/orders/:id',
         element: <ProtectedRoute><DetailOrder /></ProtectedRoute>
+    },
+    {
+        path: '/create',
+        element: <ProtectedRoute><CreateOrder /></ProtectedRoute>
     }
 ]
 

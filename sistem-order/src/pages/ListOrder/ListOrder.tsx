@@ -36,7 +36,9 @@ const ListOrder = () => {
             <section className={styles.header}>
                 <h1 className={styles.title}>List Order</h1>
                 <div className={styles.button}>
-                    <Button>Create Order</Button>
+                    <Link to='/create'>
+                        <Button>Create Order</Button>
+                    </Link>
                     <Button color='sekunder' onClick={handleLogout}>Logout</Button>
                 </div>
                 
