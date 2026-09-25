@@ -67,6 +67,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        .title {
+            font-style: 24px;
+        }
     }
 
     .input {
@@ -74,13 +77,13 @@
         flex-direction: column;
         padding: 16px;
         border-radius: 16px;
-        background-color: #ececec;
+        background-color: #f7f7f7;
         margin-top: 20px;
         gap: 8px;
     }
 
     .cart {
-        background-color: #ececec;
+        background-color: #f7f7f7;
         padding: 14px;
         margin-top: 10px;
         text-align: center;    
@@ -96,6 +99,14 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                .number {
+                    width: 24px;
+                    text-align: center;
+                }
+                button {
+                    width: 30px;
+                    height: 30px;
+                }
             }
         }
     }
