@@ -89,7 +89,7 @@ const CreateOrder = () => {
             <form className={styles.form} onSubmit={handleOrder}>
                 <div>
                     <div className={styles.header}>
-                        <h2 className={styles.title}>Customer Information</h2>
+                        <h3 className={styles.title}>Customer Information</h3>
                         <Link to='/orders'>
                             <Button color="sekunder">Cancel</Button>
                         </Link>
@@ -109,7 +109,7 @@ const CreateOrder = () => {
                         <div className={styles.item} key={item.menuItemId}>
                             <h4 className={styles.name}>{item.name}</h4>
                             <div className={styles.quantity}>
-                                <Button onClick={() => handleAddToCart('decrement', `${item.menuItemId}`, `${item.name}`)}>-</Button>
+                                <Button onClick={() => handleAddToCart('decrement', `${item.menuItemId}`, `${item.name}`)} >-</Button>
                                 <div className={styles.number}>{item.quantity}</div>
                                 <Button onClick={() => handleAddToCart('increment', `${item.menuItemId}`, `${item.name}`)}>+</Button>
                             </div>
